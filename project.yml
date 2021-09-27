@@ -2,72 +2,142 @@ name: App
 options:
   bundleIdPrefix: tomasz.korab.App
   deploymentTarget:
-    iOS: 14.0
+  iOS: 14.0
 configs:
   Debug: debug
   Testing: debug
   Release: release
 settings:
-    configs:
-      Debug:
-        SWIFT_ACTIVE_COMPILATION_CONDITIONS: DEBUG
-      Testing:
-        SWIFT_ACTIVE_COMPILATION_CONDITIONS: DEBUG TESTING
+  configs:
+    Debug:
+      SWIFT_ACTIVE_COMPILATION_CONDITIONS: DEBUG
+    Testing:
+      SWIFT_ACTIVE_COMPILATION_CONDITIONS: DEBUG TESTING
+
 targets:
-# App
+
   App:
     type: application
     platform: iOS
     sources:
       - path: App
     dependencies:
-      - target: Currencies
-        embed: false
-      - target: CurrencyPreview
-        embed: false
       - target: Networking
         embed: false
     settings:
       configs:
         - ENABLE_BITCODE: NO
-# Frameworks
-  Currencies:
-    type: framework
-    platform: iOS
-    sources:
-      - path: Currencies
-  CurrencyPreview:
-    type: framework
-    platform: iOS
-    sources:
-      - path: CurrencyPreview
+
   Networking:
     type: framework
     platform: iOS
+    testTargets:
+      - NetworkingTests
     sources:
-      - path: Networking
-# Tests
-  AppTests:
-    type: bundle.unit-test
-    platform: iOS
-    sources:
-      - path: AppTests
-    dependencies:
-      - target: App
-  AppUITests:
-    type: bundle.ui-testing
-    platform: iOS
-    sources:
-      - path: AppUITests
-    dependencies:
-      - target: App
+      - Networking
+      - path: Resources
+        buildPhase: resources
+          
   NetworkingTests:
     type: bundle.unit-test
     platform: iOS
     sources:
-      - path: NetworkingTests
-    dependencies:
-      - target: Networking
+      - NetworkingTests
+      - path: Resources
+        buildPhase: resources
+      
+schemes:
+
+  AppOnline:
+    build:
+      targets:
+        App: all
+    run:
+      config: Debug
+      
+  AppOffline:
+    build:
+      targets:
+        App: all
+    run:
+      config: Testing
+
+  Networking:
+    build:
+      targets:
+        Networking: all
+    run:
+      config: Debug
+
+  NetworkingTests:
+    build:
+      targets:
+        NetworkingTests: [test]
+    test:
+      config: Testing
+      gatherCoverageData: true
+      targets:
+        - name: NetworkingTests
+          parallelizable: true
+          randomExecutionOrder: true
+
+# App
+#  App:
+#    type: application
+#    platform: iOS
+#    sources:
+#      - path: App
+#    scheme:
+#      configVariants:
+#        - Testing
+#    dependencies:
+#      - target: Currencies
+#        embed: false
+#      - target: CurrencyPreview
+#        embed: false
+#      - target: Networking
+#        embed: false
+#    settings:
+#      configs:
+#        - ENABLE_BITCODE: NO
+## Frameworks
+#  Currencies:
+#    type: framework
+#    platform: iOS
+#    sources:
+#      - path: Currencies
+#  CurrencyPreview:
+#    type: framework
+#    platform: iOS
+#    sources:
+#      - path: CurrencyPreview
+#  Networking:
+#    type: framework
+#    platform: iOS
+#    sources:
+#      - path: Networking
+# Tests
+#  AppTests:
+#    type: bundle.unit-test
+#    platform: iOS
+#    sources:
+#      - path: AppTests
+#    dependencies:
+#      - target: App
+#  AppUITests:
+#    type: bundle.ui-testing
+#    platform: iOS
+#    sources:
+#      - path: AppUITests
+#    dependencies:
+#      - target: App
+#  NetworkingTests:
+#    type: bundle.unit-test
+#    platform: iOS
+#    sources:
+#      - path: NetworkingTests
+#    dependencies:
+#      - target: Networking
 
 
 
