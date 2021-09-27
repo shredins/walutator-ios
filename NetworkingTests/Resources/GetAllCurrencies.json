@@ -1,0 +1,10 @@
+[
+  {
+    "rates": [
+      {
+        "currency": "currency",
+        "code": "code",
+      }
+    ]
+  }
+]
