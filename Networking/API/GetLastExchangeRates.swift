@@ -9,17 +9,17 @@ public struct ExchangeRate: Decodable {
     public let bid: Double
 }
 
-class GetLast30ExchangeRatesApi {
+class GetLastExchangeRatesApi {
     
     let apiClient: ApiClientProtocol
     let url: URLRequest
     
-    init(code: String, apiClient: ApiClientProtocol = ApiClient()) {
+    init(code: String, count: Int, apiClient: ApiClientProtocol = ApiClient()) {
         self.apiClient = apiClient
-        self.url = URLRequest(stringLiteral: "http://api.nbp.pl/api/exchangerates/rates/c/\(code.lowercased())/last/30/?format=json")
+        self.url = URLRequest(stringLiteral: "http://api.nbp.pl/api/exchangerates/rates/c/\(code.lowercased())/last/\(count)/?format=json")
     }
     
-    func getLast30ExchangeRates() -> AnyPublisher<LastExchangeRates, Error> {
+    func getLastExchangeRates() -> AnyPublisher<LastExchangeRates, Error> {
         apiClient.execute(request: url)
     }
 }

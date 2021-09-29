@@ -22,7 +22,7 @@ targets:
     sources:
       - path: App
     dependencies:
-      - target: Networking
+      - target: Engine
         embed: false
     settings:
       configs:
@@ -45,7 +45,28 @@ targets:
       - NetworkingTests
       - path: Resources
         buildPhase: resources
+    dependencies:
+      - target: Networking
+        
+  Engine:
+    type: framework
+    platform: iOS
+    testTargets:
+      - EngineTests
+    sources:
+      - Engine
+    dependencies:
+      - target: Networking
+        embed: false
       
+  EngineTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources:
+      - EngineTests
+    dependencies:
+      - target: Engine
+
 schemes:
 
   AppOnline:
@@ -80,64 +101,22 @@ schemes:
         - name: NetworkingTests
           parallelizable: true
           randomExecutionOrder: true
+          
+  Engine:
+    build:
+      targets:
+        Engine: all
+    run:
+      config: Debug
 
-# App
-#  App:
-#    type: application
-#    platform: iOS
-#    sources:
-#      - path: App
-#    scheme:
-#      configVariants:
-#        - Testing
-#    dependencies:
-#      - target: Currencies
-#        embed: false
-#      - target: CurrencyPreview
-#        embed: false
-#      - target: Networking
-#        embed: false
-#    settings:
-#      configs:
-#        - ENABLE_BITCODE: NO
-## Frameworks
-#  Currencies:
-#    type: framework
-#    platform: iOS
-#    sources:
-#      - path: Currencies
-#  CurrencyPreview:
-#    type: framework
-#    platform: iOS
-#    sources:
-#      - path: CurrencyPreview
-#  Networking:
-#    type: framework
-#    platform: iOS
-#    sources:
-#      - path: Networking
-# Tests
-#  AppTests:
-#    type: bundle.unit-test
-#    platform: iOS
-#    sources:
-#      - path: AppTests
-#    dependencies:
-#      - target: App
-#  AppUITests:
-#    type: bundle.ui-testing
-#    platform: iOS
-#    sources:
-#      - path: AppUITests
-#    dependencies:
-#      - target: App
-#  NetworkingTests:
-#    type: bundle.unit-test
-#    platform: iOS
-#    sources:
-#      - path: NetworkingTests
-#    dependencies:
-#      - target: Networking
-
-
-
+  EngineTests:
+    build:
+      targets:
+        EngineTests: [test]
+    test:
+      config: Testing
+      gatherCoverageData: true
+      targets:
+        - name: EngineTests
+          parallelizable: true
+          randomExecutionOrder: true

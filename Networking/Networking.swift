@@ -16,11 +16,11 @@ public class Networking {
         #endif
     }
     
-    static func last30ExchangeRates(code: String) -> Last30ExchangeRates {
+    static func lastExchangeRates(code: String, count: Int) -> Last30ExchangeRates {
         #if TESTING
-        ApiClientStub(file: "GetLast30ExchangeRates").rawResponseStub()
+        ApiClientStub(file: "GetLastExchangeRates").rawResponseStub()
         #else
-        GetLast30ExchangeRatesApi(code: code).getLast30ExchangeRates()
+        GetLastExchangeRatesApi(code: code, count: count).getLastExchangeRates()
         #endif
     }
 }
