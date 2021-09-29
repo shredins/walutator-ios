@@ -2,7 +2,7 @@ import Foundation
 import Combine
 
 public struct LastExchangeRates: Decodable {
-    let rates: [ExchangeRate]
+    public let rates: [ExchangeRate]
 }
 
 public struct ExchangeRate: Decodable {

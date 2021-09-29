@@ -1,11 +1,11 @@
 import Foundation
 import Combine
 
-public struct Currencies: Decodable {
-    let rates: [Currency]
+public struct Currencies: Codable {
+    public let rates: [Currency]
 }
 
-public struct Currency: Decodable {
+public struct Currency: Codable {
     public let currency, code: String
 }
 

@@ -6,9 +6,9 @@ public class Networking {
     public typealias NetworkPublisher<Success: Decodable> = AnyPublisher<Success, Error>
     
     public typealias AllCurrencies = NetworkPublisher<[Currencies]>
-    public typealias Last30ExchangeRates = NetworkPublisher<LastExchangeRates>
+    public typealias ExchangeRatesHistory = NetworkPublisher<LastExchangeRates>
     
-    static func allCurrencies() -> AllCurrencies {
+    public static func allCurrencies() -> AllCurrencies {
         #if TESTING
         ApiClientStub(file: "GetAllCurrencies").rawResponseStub()
         #else
@@ -16,7 +16,7 @@ public class Networking {
         #endif
     }
     
-    static func lastExchangeRates(code: String, count: Int) -> Last30ExchangeRates {
+    public static func exchangeRatesHistory(code: String, count: Int) -> ExchangeRatesHistory {
         #if TESTING
         ApiClientStub(file: "GetLastExchangeRates").rawResponseStub()
         #else

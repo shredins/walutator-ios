@@ -8,8 +8,8 @@ class GetLast30ExchangeRatesTests: XCTestCase {
     private var cancellables = Set<AnyCancellable>()
 
     func testSuccess() {
-        GetLast30ExchangeRatesApi(code: "", apiClient: .success(stub: "GetLast30ExchangeRates"))
-            .getLast30ExchangeRates()
+        GetLastExchangeRatesApi(code: "", count: 30, apiClient: .success(stub: "GetLastExchangeRates"))
+            .getLastExchangeRates()
             .expectSuccess(byStoringIn: &cancellables) {
                 XCTAssertEqual($0.rates.count, 2)
                 XCTAssertEqual($0.rates.first?.bid, 1.0)
@@ -29,7 +29,7 @@ class GetLast30ExchangeRatesTests: XCTestCase {
     
     func testStubTriggering() {
         Networking
-            .last30ExchangeRates(code: "")
+            .exchangeRatesHistory(code: "", count: 0)
             .expectSuccess(byStoringIn: &cancellables) {
                 XCTAssertEqual($0.rates.count, 2)
                 XCTAssertEqual($0.rates.first?.bid, 1.0)
