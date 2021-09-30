@@ -15,7 +15,7 @@
 		16FB79CF2704704100C995F1 /* UserDefaults+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16FB79CE2704704100C995F1 /* UserDefaults+Extensions.swift */; };
 		16FB79D227048B0900C995F1 /* ExchangeRatesHistorySyncEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16FB79D127048B0900C995F1 /* ExchangeRatesHistorySyncEngine.swift */; };
 		16FB79D527048B4600C995F1 /* PurchasedCurrenciesSyncEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16FB79D427048B4600C995F1 /* PurchasedCurrenciesSyncEngine.swift */; };
-		16FB79D827048C5100C995F1 /* ProfitCalculatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16FB79D727048C5100C995F1 /* ProfitCalculatorProtocol.swift */; };
+		16FB79D827048C5100C995F1 /* ProfitCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16FB79D727048C5100C995F1 /* ProfitCalculator.swift */; };
 		16FB79DB27048CEA00C995F1 /* AllCurrenciesSyncEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16FB79DA27048CEA00C995F1 /* AllCurrenciesSyncEngine.swift */; };
 		16FB79DD27048D8700C995F1 /* ExchangeRatesHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16FB79DC27048D8700C995F1 /* ExchangeRatesHistory.swift */; };
 		16FB79E12704921E00C995F1 /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16FB79E02704921E00C995F1 /* Keys.swift */; };
@@ -121,7 +121,7 @@
 		16FB79CE2704704100C995F1 /* UserDefaults+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Extensions.swift"; sourceTree = "<group>"; };
 		16FB79D127048B0900C995F1 /* ExchangeRatesHistorySyncEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRatesHistorySyncEngine.swift; sourceTree = "<group>"; };
 		16FB79D427048B4600C995F1 /* PurchasedCurrenciesSyncEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchasedCurrenciesSyncEngine.swift; sourceTree = "<group>"; };
-		16FB79D727048C5100C995F1 /* ProfitCalculatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfitCalculatorProtocol.swift; sourceTree = "<group>"; };
+		16FB79D727048C5100C995F1 /* ProfitCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfitCalculator.swift; sourceTree = "<group>"; };
 		16FB79DA27048CEA00C995F1 /* AllCurrenciesSyncEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllCurrenciesSyncEngine.swift; sourceTree = "<group>"; };
 		16FB79DC27048D8700C995F1 /* ExchangeRatesHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRatesHistory.swift; sourceTree = "<group>"; };
 		16FB79E02704921E00C995F1 /* Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
@@ -269,7 +269,7 @@
 		16FB79D627048C4100C995F1 /* ProfitCalculator */ = {
 			isa = PBXGroup;
 			children = (
-				16FB79D727048C5100C995F1 /* ProfitCalculatorProtocol.swift */,
+				16FB79D727048C5100C995F1 /* ProfitCalculator.swift */,
 			);
 			path = ProfitCalculator;
 			sourceTree = "<group>";
@@ -285,7 +285,6 @@
 		16FB79DE27048DCE00C995F1 /* Features */ = {
 			isa = PBXGroup;
 			children = (
-				D58294DD7D8866381F1DE916 /* EngineFacade.swift */,
 				16FB79D927048CDA00C995F1 /* AllCurrencies */,
 				16FB79D627048C4100C995F1 /* ProfitCalculator */,
 				16FB79D327048B3700C995F1 /* PurchasedCurrencies */,
@@ -459,6 +458,7 @@
 			isa = PBXGroup;
 			children = (
 				928C113EC21196E48DB03328 /* Engine.swift */,
+				D58294DD7D8866381F1DE916 /* EngineFacade.swift */,
 				16FB79DF2704920F00C995F1 /* Support */,
 				16FB79DE27048DCE00C995F1 /* Features */,
 			);
@@ -663,7 +663,7 @@
 				16FB79D227048B0900C995F1 /* ExchangeRatesHistorySyncEngine.swift in Sources */,
 				16FB79EB2704C00400C995F1 /* PurchasedCurrency.swift in Sources */,
 				EE825387D598F0E4431811F7 /* EngineFacade.swift in Sources */,
-				16FB79D827048C5100C995F1 /* ProfitCalculatorProtocol.swift in Sources */,
+				16FB79D827048C5100C995F1 /* ProfitCalculator.swift in Sources */,
 				16FB79DB27048CEA00C995F1 /* AllCurrenciesSyncEngine.swift in Sources */,
 				F994DB487EC6279F69D8D330 /* Engine.swift in Sources */,
 				16FB79DD27048D8700C995F1 /* ExchangeRatesHistory.swift in Sources */,

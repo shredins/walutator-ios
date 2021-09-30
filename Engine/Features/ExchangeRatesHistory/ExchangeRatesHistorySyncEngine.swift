@@ -83,3 +83,10 @@ class ExchangeRatesHistorySyncEngine {
         return Self.calendar.dateComponents([.day], from: lastRead, to: today).day ?? 0
     }
 }
+
+extension ExchangeRatesHistorySyncEngine: ProfitCalculatorDataSource {
+    
+    func exchangeRatesHistoryPublisher(for code: String) -> AnyPublisher<[Double], Error> {
+        history(for: code)
+    }
+}
