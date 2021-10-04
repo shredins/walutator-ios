@@ -1,10 +1,3 @@
-//
-//  SwiftUIView.swift
-//  
-//
-//  Created by Tomasz Korab on 04/09/2021.
-//
-
 import SwiftUI
 
 public struct CurrencyPreview: View {

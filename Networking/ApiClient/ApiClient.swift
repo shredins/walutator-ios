@@ -1,6 +1,10 @@
 import Foundation
 import Combine
 
+var isRunningTests: Bool {
+    ProcessInfo.processInfo.environment["RUNNING_TESTS"] == "YES"
+}
+
 protocol ApiClientProtocol {
     func execute<Success: Decodable>(request: URLRequest) -> AnyPublisher<Success, Error>
     func dataTaskPublisher(from request: URLRequest) -> AnyPublisher<URLSession.DataTaskPublisher.Output, Error>
@@ -8,7 +12,7 @@ protocol ApiClientProtocol {
 
 
 extension ApiClientProtocol {
-    
+        
     func execute<Success: Decodable>(request: URLRequest) -> AnyPublisher<Success, Error> {
         return dataTaskPublisher(from: request)
             .catch { error in

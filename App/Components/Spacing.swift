@@ -1,10 +1,3 @@
-//
-//  Spacing.swift
-//  App
-//
-//  Created by Tomasz Korab on 28/09/2021.
-//
-
 import SwiftUI
 
 struct Spacing: View {

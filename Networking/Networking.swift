@@ -9,18 +9,18 @@ public class Networking {
     public typealias ExchangeRatesHistory = NetworkPublisher<LastExchangeRates>
     
     public static func allCurrencies() -> AllCurrencies {
-        #if TESTING
-        ApiClientStub(file: "GetAllCurrencies").rawResponseStub()
-        #else
-        GetAllCurrenciesApi().getAllCurrencies()
-        #endif
+        if isRunningTests {
+            return ApiClientStub(file: "GetAllCurrencies").rawResponseStub()
+        } else {
+            return GetAllCurrenciesApi().getAllCurrencies()
+        }
     }
     
     public static func exchangeRatesHistory(code: String, count: Int) -> ExchangeRatesHistory {
-        #if TESTING
-        ApiClientStub(file: "GetLastExchangeRates").rawResponseStub()
-        #else
-        GetLastExchangeRatesApi(code: code, count: count).getLastExchangeRates()
-        #endif
+        if isRunningTests {
+            return ApiClientStub(file: "GetLastExchangeRates").rawResponseStub()
+        } else {
+            return GetLastExchangeRatesApi(code: code, count: count).getLastExchangeRates()
+        }
     }
 }

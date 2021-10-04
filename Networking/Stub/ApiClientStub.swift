@@ -34,7 +34,9 @@ final class ApiClientStub: ApiClientProtocol {
     }
     
     func dataTaskPublisher(from request: URLRequest) -> AnyPublisher<URLSession.DataTaskPublisher.Output, Error> {
-        #if TESTING
+        guard isRunningTests else {
+            fatalError("Invalid coniguration or using it in non-testing mode")
+        }
         
         if let data = data {
             let response = HTTPURLResponse(url: request.url!, statusCode: 200, httpVersion: nil, headerFields: nil)!
@@ -44,10 +46,8 @@ final class ApiClientStub: ApiClientProtocol {
         } else if let error = error {
             return Result.Publisher(error)
                 .eraseToAnyPublisher()
+        } else {
+            fatalError("Invalid coniguration or using it in non-testing mode")
         }
-        
-        #endif
-
-        fatalError("Invalid coniguration or using it in non-testing mode")
     }
 }
