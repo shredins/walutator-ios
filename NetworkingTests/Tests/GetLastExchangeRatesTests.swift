@@ -5,7 +5,12 @@ import Combine
 
 class GetLast30ExchangeRatesTests: XCTestCase {
 
-    private var cancellables = Set<AnyCancellable>()
+    private var cancellables: Set<AnyCancellable>!
+    
+    override func setUp() {
+        super.setUp()
+        cancellables = []
+    }
 
     func testSuccess() {
         GetLastExchangeRatesApi(code: "", count: 30, apiClient: .success(stub: "GetLastExchangeRates"))

@@ -5,7 +5,12 @@ import Combine
 
 class GetAllCurrenciesTests: XCTestCase {
 
-    private var cancellables = Set<AnyCancellable>()
+    private var cancellables: Set<AnyCancellable>!
+    
+    override func setUp() {
+        super.setUp()
+        cancellables = []
+    }
 
     func testSuccess() {
         GetAllCurrenciesApi(apiClient: .success(stub: "GetAllCurrencies"))

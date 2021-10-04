@@ -7,7 +7,12 @@ import Combine
 
 class AllCurrenciesSyncEngineTests: XCTestCase {
     
-    private var cancellables = Set<AnyCancellable>()
+    private var cancellables: Set<AnyCancellable>!
+    
+    override func setUp() {
+        super.setUp()
+        cancellables = []
+    }
 
     func testSyncingAllCurrencies() {
         let defaults: UserDefaults = .mocked(for: #file)
