@@ -4,7 +4,13 @@ import SwiftUI
 struct WalutatorApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            RootView(
+                store: .init(
+                    initialState: RootState(),
+                    reducer: rootReducer,
+                    environment: RootEnvironment()
+                )
+            )
         }
     }
 }

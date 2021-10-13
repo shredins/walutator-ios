@@ -17,7 +17,7 @@ public protocol Engine {
 
 public extension Engine where Self == EngineFacade {
     
-    static var inject: EngineFacade {
+    static var inject: Engine {
         EngineFacade()
     }
 }
