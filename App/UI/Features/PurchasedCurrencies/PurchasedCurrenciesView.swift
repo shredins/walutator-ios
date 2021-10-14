@@ -16,8 +16,19 @@ struct PurchasedCurrenciesView: View {
             VStack(alignment: .leading, spacing: 0) {
                 HStack {
                     Header("my.purchased.currencies.title")
-                    Button("my.purchased.currencies.manage") {
-                        viewStore.send(.managePurchasedButtonSelected)
+                    NavigationLink(
+                        destination: ManagePurchasedCurrenciesView(
+                            store: .init(
+                                initialState: .init(),
+                                reducer: managePurchasedCurrencies,
+                                environment: .init()
+                            )
+                        ),
+                        isActive: viewStore.binding(
+                            get: \.isNavigationActive,
+                            send: PurchasedCurrenciesAction.managePurchasedNavigation)
+                    ) {
+                        Text("my.purchased.currencies.manage")
                     }
                 }
                 .padding([.horizontal, .top], 22)
@@ -57,3 +68,5 @@ struct PurchasedCurrenciesView_Previews: PreviewProvider {
         )
     }
 }
+
+

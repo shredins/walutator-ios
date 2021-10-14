@@ -4,11 +4,12 @@ import ComposableArchitecture
 
 struct PurchasedCurrenciesState: Equatable {
     var purchasedCurrencies: [PurchasedCurrency]?
+    var isNavigationActive: Bool = false
 }
 
 enum PurchasedCurrenciesAction: Equatable {
     case onAppear
-    case managePurchasedButtonSelected
+    case managePurchasedNavigation(active: Bool)
     case purchasedCurrenciesResponse([PurchasedCurrency])
 }
 
@@ -24,8 +25,8 @@ let purchasedCurrenciesReducer = Reducer<PurchasedCurrenciesState, PurchasedCurr
             .map(PurchasedCurrenciesAction.purchasedCurrenciesResponse)
             .receive(on: env.uiQueue)
             .eraseToEffect()
-    case .managePurchasedButtonSelected:
-        // TODO
+    case .managePurchasedNavigation(let active):
+        state.isNavigationActive = active
         return .none
     case .purchasedCurrenciesResponse(let response):
         state.purchasedCurrencies = response

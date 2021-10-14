@@ -1,3 +1,5 @@
 "my.purchased.currencies.title" = "Moje środki";
 "my.purchased.currencies.manage" = "Zarządzaj";
 "my.purchased.currencies.empty" = "Brak środków";
+
+"manage.purchased.currencies.navigation.title" = "Zarządzaj";
