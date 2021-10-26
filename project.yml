@@ -2,7 +2,7 @@ name: App
 options:
   bundleIdPrefix: tomasz.korab.App
   deploymentTarget:
-  iOS: 14.0
+  iOS: 15.0
 packages:
   ComposableArchitecture:
     url: https://github.com/pointfreeco/swift-composable-architecture
@@ -127,3 +127,8 @@ schemes:
         - name: EngineTests
           parallelizable: true
           randomExecutionOrder: true
+      environmentVariables:
+        - variable: RUNNING_TESTS
+          value: TRUE
+          isEnabled: true
+

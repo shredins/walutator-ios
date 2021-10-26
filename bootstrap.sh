@@ -1,3 +1,5 @@
+brew install xcodegen
+
 # install .xctemplate
 
 TEMPLATES_PATH="/Applications/Xcode.app/Contents/Developer/Library/Xcode/Templates/File Templates"
