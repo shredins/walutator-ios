@@ -14,57 +14,41 @@ targets:
     type: application
     platform: iOS
     sources:
-      - path: App
+      - path: Presentation/Code
+        createIntermediateGroups: true
+      - path: Business/Code
+        createIntermediateGroups: true
+      - path: Data/Code
+        createIntermediateGroups: true
     dependencies:
-      - target: Engine
-        embed: false
       - package: ComposableArchitecture
-    settings:
-      configs:
-        - ENABLE_BITCODE: NO
 
-  Networking:
-    type: framework
-    platform: iOS
-    testTargets:
-      - NetworkingTests
-    sources:
-      - Networking
-      - path: Resources
-        buildPhase: resources
-
-  NetworkingTests:
+  DataTests:
     type: bundle.unit-test
     platform: iOS
     sources:
-      - NetworkingTests
-      - path: Resources
+      - path: Data/Tests
+        createIntermediateGroups: true
+      - path: Support/Resources
+        createIntermediateGroups: true
         buildPhase: resources
-      - path: TestsSupport
+      - path: Support/TestsSupport
+        createIntermediateGroups: true
         buildPhase: sources
     dependencies:
-      - target: Networking
-
-  Engine:
-    type: framework
-    platform: iOS
-    testTargets:
-      - EngineTests
-    sources:
-      - Engine
-    dependencies:
-      - target: Networking
-        embed: false
+      - target: App
       
-  EngineTests:
+  BusinessTests:
     type: bundle.unit-test
     platform: iOS
     sources:
-      - EngineTests
-      - path: TestsSupport
+      - path: Business/Tests
+        createIntermediateGroups: true
+      - path: Support/TestsSupport
+        createIntermediateGroups: true
         buildPhase: sources
     dependencies:
-      - target: Engine
+      - target: App
 
 schemes:
 
@@ -86,45 +70,31 @@ schemes:
           value: TRUE
           isEnabled: true
 
-  Networking:
+  DataTests:
     build:
       targets:
-        Networking: all
-    run:
-      config: Debug
-
-  NetworkingTests:
-    build:
-      targets:
-        NetworkingTests: [test]
+        DataTests: [test]
     test:
       config: Debug
       gatherCoverageData: true
       targets:
-        - name: NetworkingTests
+        - name: DataTests
           parallelizable: true
           randomExecutionOrder: true
       environmentVariables:
         - variable: RUNNING_TESTS
           value: TRUE
           isEnabled: true
-          
-  Engine:
-    build:
-      targets:
-        Engine: all
-    run:
-      config: Debug
 
-  EngineTests:
+  BusinessTests:
     build:
       targets:
-        EngineTests: [test]
+        BusinessTests: [test]
     test:
       config: Debug
       gatherCoverageData: true
       targets:
-        - name: EngineTests
+        - name: BusinessTests
           parallelizable: true
           randomExecutionOrder: true
       environmentVariables:
